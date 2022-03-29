@@ -1,0 +1,87 @@
+{{#section 'css'}}
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+{{/section}}
+
+
+{{#section 'js'}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"
+            referrerpolicy="origin"></script>
+    <script>
+        $('#frmRegister').on('submit',function(e){
+            e.preventDefault();
+
+            const username= $('#txtUsername').val();
+            const password = $('#txtPassword').val();
+            const passwordConfirm = $('#txtConfirm').val();
+            
+            if (username.length === 0) {
+               alert('Invalid data!');
+               return;
+            }
+            if (password !== passwordConfirm) {
+                alert('Invalid password');
+                return;
+            }
+            
+            $.getJSON(`/account/is-available?user=${username}`, function (data) {
+                if (data === false) {
+                   alert('Not available!');
+               } else {
+            $('#frmRegister').off('submit').submit();
+               }
+            });
+        });
+
+        $('#txtDOB').datetimepicker({
+            timepicker: false,
+            format: 'd/m/Y',
+            mask: true,
+            default: null
+            });
+        $('#txtUsername').select();
+    </script>
+{{/section}}
+
+<form id="frmRegister" method="post">
+  <div class="card">
+    <h4 class="card-header">
+      Account Registration
+    </h4>
+    <div class="card-body">
+      <h5>Account Information</h5>
+      <div class="form-group">
+        <label for="txtUsername">Username</label>
+        <input type="text" placeholder="Nhập username" class="form-control" id="txtUsername" name="username" />
+      </div>
+      <div class="form-group">
+        <label for="txtPassword">Password</label>
+        <input type="password" placeholder="Nhập mật khẩu" class="form-control" id="txtPassword" name="password" />
+      </div>
+      <div class="form-group mb-5">
+        <label for="txtConfirm">Confirm Password</label>
+        <input type="password" placeholder="Nhập lại mật khẩu" class="form-control" id="txtConfirm" />
+      </div>
+
+      <h5>Profile Information</h5>
+      <div class="form-group">
+        <label for="txtName">Name</label>
+        <input type="text" placeholder="Nhập họ tên" class="form-control" id="txtName" name="name" />
+      </div>
+      <div class="form-group">
+        <label for="txtEmail">Email</label>
+        <input type="email" placeholder="Nhập Email" class="form-control" id="txtEmail" name="email" required />
+      </div>
+      <div class="form-group">
+        <label for="txtDOB">DOB</label>
+        <input type="text" class="form-control" id="txtDOB" name="dob" />
+      </div>
+    </div>
+    <div class="card-footer text-muted">
+      <button type="submit" class="btn btn-primary " href="javascript:;">
+        <i class="fa fa-check" aria-hidden="true"></i>
+        Save
+      </button>
+    </div>
+  </div>
+</form> 

@@ -1,0 +1,43 @@
+<form method="post">
+  <div class="card">
+    <h4 class="card-header">
+      New Product
+    </h4>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="txtProName">Name</label>
+        <input type="text" class="form-control" id="txtProName" name="ProName" autofocus>
+      </div>
+      <div class="form-group">
+        <label for="txtTinyDes">Description</label>
+        <input type="text" class="form-control" id="txtTinyDes" name="TinyDes" autofocus>
+      </div>
+      <div class="form-group">
+        <label for="txtFullDes">Fully Description</label>
+        <input type="text" class="form-control" id="txtFullDes" name="FullDes" autofocus>
+      </div>
+      <div class="form-group">
+        <label for="txtPrice">Price</label>
+        <input type="number" class="form-control" id="txtPrice" name="Price" autofocus>
+      </div>
+      <div class="form-group">
+        <label for="txtCatID">Category ID</label>
+        <input type="number" class="form-control" id="txtCatID" name="CatID" autofocus>
+      </div>
+      <div class="form-group">
+        <label for="txtQuantity">Quantity</label>
+        <input type="number" class="form-control" id="txtQuantity" name="Quantity" autofocus>
+      </div>
+    </div>
+    <div class="card-footer text-muted">
+      <a class="btn btn-outline-success" href="/admin/product" role="button">
+        <i class="fa fa-backward" aria-hidden="true"></i>
+        List
+      </a>
+      <button type="submit" class="btn btn-primary">
+        <i class="fa fa-check" aria-hidden="true"></i>
+        Save
+      </button>
+    </div>
+  </div>
+</form>
